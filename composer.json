@@ -1,0 +1,16 @@
+{
+    "require": {
+        "twig/twig": "1.*",
+        "symfony/http-foundation": "2.2.*",
+        "robmorgan/phinx": "^0.8.1",
+        "fzaninotto/faker": "^1.6",
+        "monolog/monolog": "^1.23"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pizza\\Controller\\": "Controller/",
+            "Pizza\\Model\\": "Model/"
+        },
+        "files": ["Helper/functions.php"]
+    }
+}

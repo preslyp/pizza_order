@@ -1,0 +1,78 @@
+{% extends 'layout.twig' %}
+
+{% block title %}Home page | Order your pizza {% endblock %}
+
+{% block body %}
+
+    <div class="header">
+
+        <div class="container">
+            <div class="row text-center">
+            {% if errors is not null and errors is not empty %}
+
+                {{ errors }}
+
+            {% endif %}
+
+            </div>
+        </div>
+        <form action="index.php/addproduct" method="post">
+            <div class="form-group">
+                <label for="pizzaname">Pizza name</label>
+                <input type="text" class="form-control" id="pizzaname" name="pizzaname" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="dough">Dough</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="flourtype">Flour type</label>
+                        <select name="flourtype" class="form-control">
+                            {% for type in flourtype %}
+                                <option value="{{ type.flour_name }}">{{ type.flour_name | capitalize }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="bakingtechnique">Baking technique</label>
+                        <select name="bakingtechnique" class="form-control">
+                            {% for bake in baking %}
+                                <option value="{{ bake.baking_name }}">{{ bake.baking_name | capitalize }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <label for="topping">Topping</label>
+
+                {% for i in range(0, 2) %}
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="topping">Topping</label>
+                            <select name="topping[{{ i }}]" class="form-control">
+                                {% for item in topping %}
+                                    <option value="{{ item.topping_name }}">{{ item.topping_name | capitalize }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="weight_topping">Weight</label>
+                            <input type="text" name="weight_topping[{{ i }}]" class="form-control" placeholder="Weight(gram)">
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+
+            </div>
+            <input type="submit" class="btn btn-primary" id="mySubmit" name="submit" value="Submit">
+        </form>
+
+    </div>
+
+{% endblock %}
+
+
